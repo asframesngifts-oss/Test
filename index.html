@@ -109,6 +109,7 @@ tbody td{padding:8px 10px;vertical-align:middle}
       <button class="btn" onclick="syncFromSheet()">↻ Sync</button>
       <button class="btn" style="border-color:#534AB7;color:#534AB7" onclick="openKhata()">Customer Khata</button>
       <button class="btn primary" onclick="openModal('add')">+ New Order</button>
+<span id="newBadge" style="display:none;background:#993C1D;color:#fff;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;margin-left:-4px">NEW</span>
     </div>
   </div>
 
@@ -633,10 +634,11 @@ function playAlert() {
 function showAlert(msg) {
   document.getElementById('alertMsg').textContent=msg;
   document.getElementById('alertBar').classList.add('show');
+  document.getElementById('newBadge').style.display = 'inline';
   playAlert();
   if(Notification.permission==='granted') new Notification('AS Frames',{body:msg});
   else if(Notification.permission!=='denied') Notification.requestPermission();
-  setTimeout(closeAlert,8000);
+  setTimeout(closeAlert,9000);
 }
 function closeAlert(){document.getElementById('alertBar').classList.remove('show');}
 
