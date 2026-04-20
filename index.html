@@ -434,7 +434,13 @@ function openRemind(idx) {
   window.open('https://wa.me/' + o.phone + '?text=' + encodeURIComponent(msg), '_blank');
   render();
 }
-
+function deleteOrder(idx) {
+  if (!confirm('Delete order for ' + orders[idx].name + '?')) return;
+  orders.splice(idx, 1);
+  saveLocal();
+  render();
+  updateStats();
+}
 // ─── TIME ─────────────────────────────────────────────────
 function timeSince(ts) {
   if (!ts) return 'Never';
@@ -485,7 +491,7 @@ function render() {
       <td class="actions">
         <button class="btn sm" onclick="openEdit(${idx})">Edit</button>
         <button class="btn sm wa" onclick="sendStatusWA(${idx})">WA</button>
-        <button class="btn sm remind" onclick="openRemind(${idx})">Remind</button>
+        <button class="btn sm" style="border-color:#993C1D;color:#993C1D" onclick="deleteOrder(${idx})">Del</button>
       </td>`;
     tbody.appendChild(tr);
   });
